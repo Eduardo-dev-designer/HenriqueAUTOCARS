@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package main;
+
+import DAO.ConexaoBD;
 
 /**
  *
@@ -11,6 +9,7 @@ package main;
 public class HenriqueAUTOCARS {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        ConexaoBD.inicializarBanco();
+        System.out.println("Banco de dados do HenriqueAUTOCARS!!!!");
     }
 }

@@ -44,10 +44,20 @@ public class TelaCliente extends javax.swing.JFrame {
         jLabel1.setText("Email/Telefone:");
 
         emailtxt.setText("Digite seu Email/Telefone...");
+        emailtxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                emailtxtMouseClicked(evt);
+            }
+        });
 
         jLabel3.setText("Senha:");
 
         senhatxt.setText("Digite sua senha...");
+        senhatxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                senhatxtMouseClicked(evt);
+            }
+        });
 
         buttoncadastrar.setLabel("Cadastrar");
         buttoncadastrar.addActionListener(this::buttoncadastrarActionPerformed);
@@ -125,6 +135,17 @@ public class TelaCliente extends javax.swing.JFrame {
     private void buttonentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonentrarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonentrarActionPerformed
+
+    private void emailtxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailtxtMouseClicked
+        emailtxt.setText("");
+
+    }//GEN-LAST:event_emailtxtMouseClicked
+
+    private void senhatxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_senhatxtMouseClicked
+
+        senhatxt.setText("");
+
+    }//GEN-LAST:event_senhatxtMouseClicked
 
     /**
      * @param args the command line arguments
