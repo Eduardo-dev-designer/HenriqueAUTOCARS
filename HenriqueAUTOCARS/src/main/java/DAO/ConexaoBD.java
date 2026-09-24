@@ -25,8 +25,6 @@ public class ConexaoBD {
     }
 
     /**
-     * Cria todas as tabelas do sistema caso ainda nao existam. Deve ser
-     * chamado uma vez na inicializacao da aplicacao (ex.: na classe main).
      */
     public static void inicializarBanco() {
         String[] tabelas = {

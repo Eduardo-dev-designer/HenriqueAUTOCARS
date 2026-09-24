@@ -49,6 +49,7 @@ public class TelaCliente extends javax.swing.JFrame {
                 emailtxtMouseClicked(evt);
             }
         });
+        emailtxt.addActionListener(this::emailtxtActionPerformed);
 
         jLabel3.setText("Senha:");
 
@@ -146,6 +147,10 @@ public class TelaCliente extends javax.swing.JFrame {
         senhatxt.setText("");
 
     }//GEN-LAST:event_senhatxtMouseClicked
+
+    private void emailtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailtxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailtxtActionPerformed
 
     /**
      * @param args the command line arguments
