@@ -120,9 +120,6 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmatriculaActionPerformed
-     
-                
-    }
 
 
     }//GEN-LAST:event_txtmatriculaActionPerformed
@@ -143,7 +140,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtmatriculaMouseClicked
 
     private void buttonentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonentrarActionPerformed
-        {
+        try {
 
         String matricula = txtmatricula.getText().trim();
         String senha = txtsenhaf.getText().trim();
@@ -170,9 +167,9 @@ public class TelaFuncionario extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }
 
+    } catch (Exception e) {
+            System.out.println("Erro ao logar " + e.getMessage());
     }
-       
-
        
     }//GEN-LAST:event_buttonentrarActionPerformed
 
