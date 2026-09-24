@@ -1,5 +1,6 @@
 package DAO;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -17,6 +18,7 @@ public class ConexaoBD {
     }
 
     public static Connection conectar() throws SQLException {
+
         Connection conexao = DriverManager.getConnection(URL);
         try (Statement stmt = conexao.createStatement()) {
             stmt.execute("PRAGMA foreign_keys = ON");
