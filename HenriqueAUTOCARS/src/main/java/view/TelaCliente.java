@@ -5,6 +5,10 @@
 
 package view;
 
+import DAO.ClienteDAO;
+import javax.swing.JOptionPane;
+import model.Cliente;
+
 /**
  *
  * @author eduar
@@ -134,7 +138,36 @@ public class TelaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_buttoncadastrarActionPerformed
 
     private void buttonentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonentrarActionPerformed
-        // TODO add your handling code here:
+
+        String email = emailtxt.getText().trim();
+        String senha = senhatxt.getText().trim();
+        
+        if (email.isEmpty() || senha.isEmpty()
+            || email.equals("Digite seu Email/Telefone...")
+            || senha.equals("Digite sua senha...")) {
+
+        JOptionPane.showMessageDialog(this,
+                "Preencha o e-mail e a senha.");
+
+        return;
+    }
+        ClienteDAO clienteDAO = new ClienteDAO();
+    Cliente cliente = clienteDAO.buscarPorEmailSenha(email, senha);
+
+    if (cliente != null) {
+
+        JOptionPane.showMessageDialog(this,
+                "Login realizado com sucesso!\nBem-vindo, "
+                + cliente.getNome());
+
+    } else {
+
+        JOptionPane.showMessageDialog(this,
+                "E-mail ou senha incorretos.",
+                "Erro de login",
+                JOptionPane.ERROR_MESSAGE);
+    }
+
     }//GEN-LAST:event_buttonentrarActionPerformed
 
     private void emailtxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailtxtMouseClicked

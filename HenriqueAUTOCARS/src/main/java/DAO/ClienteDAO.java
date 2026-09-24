@@ -90,12 +90,13 @@ public class ClienteDAO {
      * Usado na tela de login do cliente (email/telefone + senha).
      */
     public Cliente buscarPorEmailSenha(String email, String senha) {
-        String sql = "SELECT * FROM cliente WHERE email = ? AND senha = ?";
+        String sql = "SELECT * FROM cliente WHERE (email = ? OR telefone = ?) AND senha = ?";
         try (Connection con = ConexaoBD.conectar();
                 PreparedStatement stmt = con.prepareStatement(sql)) {
 
             stmt.setString(1, email);
-            stmt.setString(2, senha);
+            stmt.setString(2, email);
+            stmt.setString(3, senha);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return mapear(rs);

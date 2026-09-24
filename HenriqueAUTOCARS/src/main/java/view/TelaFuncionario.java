@@ -4,6 +4,8 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author eduar
@@ -34,6 +36,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtmatricula = new java.awt.TextField();
         txtsenhaf = new java.awt.TextField();
+        buttonentrar = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,6 +70,9 @@ public class TelaFuncionario extends javax.swing.JFrame {
         });
         txtsenhaf.addActionListener(this::txtsenhafActionPerformed);
 
+        buttonentrar.setLabel("Entrar");
+        buttonentrar.addActionListener(this::buttonentrarActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,6 +86,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonentrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -105,15 +112,18 @@ public class TelaFuncionario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(txtsenhaf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(340, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addComponent(buttonentrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(276, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmatriculaActionPerformed
-        String matricula = txtmatricula.getText();
-        String senha = txtsenhaf.getText();
+     
+                
+    }
 
 
     }//GEN-LAST:event_txtmatriculaActionPerformed
@@ -132,6 +142,22 @@ public class TelaFuncionario extends javax.swing.JFrame {
         txtmatricula.setText("");
 
     }//GEN-LAST:event_txtmatriculaMouseClicked
+
+    private void buttonentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonentrarActionPerformed
+
+        String matricula = txtmatricula.getText();
+        String senha = txtsenhaf.getText();
+        
+        if  (matricula.isEmpty() && senha.isEmpty()){
+            
+        
+                matricula.equals("Digite a sua matricula...")
+                senha.equals("Digite sua senha...")) {
+        }
+        JOptionPane.showMessageDialog(this,"Prencha com a sua Matricula e sua senha" );
+
+
+    }//GEN-LAST:event_buttonentrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,6 +185,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Button buttonentrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
