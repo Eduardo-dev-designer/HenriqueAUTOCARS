@@ -145,16 +145,31 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
     private void buttonentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonentrarActionPerformed
 
-        String matricula = txtmatricula.getText();
-        String senha = txtsenhaf.getText();
-        
-        if  (matricula.isEmpty() && senha.isEmpty()){
-            
-        
-                matricula.equals("Digite a sua matricula...")
-                senha.equals("Digite sua senha...")) {
+        String matricula = txtmatricula.getText().trim();
+        String senha = txtsenhaf.getText().trim();
+
+        if (matricula.isEmpty() || senha.isEmpty()
+                || matricula.equals("Digite sua matricula...")
+                || senha.equals("Digite sua senha...")) {
+
+            JOptionPane.showMessageDialog(this,
+                    "Preencha a sua matrícula e sua senha.");
+            return;
         }
-        JOptionPane.showMessageDialog(this,"Prencha com a sua Matricula e sua senha" );
+
+        DAO.FuncionarioDAO funcionarioDAO = new DAO.FuncionarioDAO();
+        model.Funcionario funcionario = funcionarioDAO.buscarPorMatriculaSenha(matricula, senha);
+
+        if (funcionario != null) {
+            JOptionPane.showMessageDialog(this,
+                    "Login realizado com sucesso!\nBem-vindo, " + funcionario.getNome());
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Matrícula ou senha incorretos.",
+                    "Erro de login",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
 
 
     }//GEN-LAST:event_buttonentrarActionPerformed
