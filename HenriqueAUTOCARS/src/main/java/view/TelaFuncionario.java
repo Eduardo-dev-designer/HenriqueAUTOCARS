@@ -5,7 +5,6 @@
 package view;
 
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author eduar
@@ -144,6 +143,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtmatriculaMouseClicked
 
     private void buttonentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonentrarActionPerformed
+        {
 
         String matricula = txtmatricula.getText().trim();
         String senha = txtsenhaf.getText().trim();
@@ -170,8 +170,10 @@ public class TelaFuncionario extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }
 
+    }
+       
 
-
+       
     }//GEN-LAST:event_buttonentrarActionPerformed
 
     /**
