@@ -1,6 +1,7 @@
 package main;
 
 import DAO.ConexaoBD;
+import view.TelaCliente;
 import view.TelaFuncionario;
 
 /**
@@ -14,5 +15,9 @@ public class HenriqueAUTOCARS {
         System.out.println("Banco de dados do HenriqueAUTOCARS!!!!");
         TelaFuncionario telaFunc = new TelaFuncionario();
         telaFunc.setVisible(true);
+        
+        TelaCliente telaClien = new TelaCliente ();
+        telaClien.setVisible(true);
     }
+    
 }
