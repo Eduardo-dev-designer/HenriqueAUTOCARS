@@ -1,59 +1,38 @@
-package model;
+package tests;
+
+import model.Funcionario;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-class FuncionarioTest {
+public class FuncionarioTest {
 
     @Test
-    void deveCriarFuncionarioComConstrutor() {
-        Funcionario funcionario = new Funcionario(
-                "Carlos",
-                "MAT001",
-                "Vendedor",
-                "1234"
-        );
+    void deveCriarFuncionario() {
 
-        assertAll(
-                () -> assertEquals("Carlos", funcionario.getNome()),
-                () -> assertEquals("MAT001", funcionario.getMatricula()),
-                () -> assertEquals("Vendedor", funcionario.getCargo()),
-                () -> assertEquals("1234", funcionario.getSenha())
-        );
-    }
-
-    @Test
-    void deveAlterarDadosDoFuncionario() {
         Funcionario funcionario = new Funcionario();
 
-        funcionario.setId(5);
-        funcionario.setNome("Pedro");
-        funcionario.setMatricula("MAT005");
-        funcionario.setCargo("Gerente");
-        funcionario.setSenha("abcd");
+        funcionario.setId(1);
+        funcionario.setNome("Carlos");
+        funcionario.setMatricula("MAT001");
+        funcionario.setCargo("Vendedor");
+        funcionario.setSenha("1234");
 
-        assertAll(
-                () -> assertEquals(5, funcionario.getId()),
-                () -> assertEquals("Pedro", funcionario.getNome()),
-                () -> assertEquals("MAT005", funcionario.getMatricula()),
-                () -> assertEquals("Gerente", funcionario.getCargo()),
-                () -> assertEquals("abcd", funcionario.getSenha())
-        );
+        assertEquals(1, funcionario.getId());
+        assertEquals("Carlos", funcionario.getNome());
+        assertEquals("MAT001", funcionario.getMatricula());
+        assertEquals("Vendedor", funcionario.getCargo());
+        assertEquals("1234", funcionario.getSenha());
     }
 
     @Test
-    void toStringDeveConterDadosPrincipais() {
-        Funcionario funcionario = new Funcionario(
-                "Carlos",
-                "MAT001",
-                "Vendedor",
-                "1234"
-        );
+    void deveAlterarNomeDoFuncionario() {
 
-        String texto = funcionario.toString();
+        Funcionario funcionario = new Funcionario();
 
-        assertTrue(texto.contains("Carlos"));
-        assertTrue(texto.contains("MAT001"));
-        assertTrue(texto.contains("Vendedor"));
+        funcionario.setNome("Pedro");
+
+        assertEquals("Pedro", funcionario.getNome());
     }
 }

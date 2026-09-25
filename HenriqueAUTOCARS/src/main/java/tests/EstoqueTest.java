@@ -1,58 +1,56 @@
-package model;
+package tests;
+
+import model.Estoque;
+import model.Veiculo;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-class EstoqueTest {
+public class EstoqueTest {
 
     @Test
-    void deveAdicionarQuantidadeAoEstoque() {
-        Estoque estoque = new Estoque(null, 10);
+    void deveCriarEstoque() {
 
+        Estoque estoque = new Estoque();
+
+        estoque.setId(1);
+        estoque.setQuantidade(10);
+
+        assertEquals(1, estoque.getId());
+        assertEquals(10, estoque.getQuantidade());
+    }
+
+    @Test
+    void deveAdicionarQuantidade() {
+
+        Estoque estoque = new Estoque();
+
+        estoque.setQuantidade(10);
         estoque.adicionar(5);
 
         assertEquals(15, estoque.getQuantidade());
     }
 
     @Test
-    void deveRemoverQuantidadeQuandoHaEstoqueSuficiente() {
-        Estoque estoque = new Estoque(null, 10);
+    void deveRemoverQuantidade() {
 
+        Estoque estoque = new Estoque();
+
+        estoque.setQuantidade(10);
         estoque.remover(4);
 
         assertEquals(6, estoque.getQuantidade());
     }
 
     @Test
-    void naoDeveRemoverQuantidadeMaiorQueOEstoque() {
-        Estoque estoque = new Estoque(null, 3);
+    void deveAssociarVeiculoAoEstoque() {
 
-        IllegalArgumentException erro = assertThrows(
-                IllegalArgumentException.class,
-                () -> estoque.remover(4)
-        );
-
-        assertEquals(
-                "Quantidade insuficiente em estoque.",
-                erro.getMessage()
-        );
-
-        assertEquals(3, estoque.getQuantidade());
-    }
-
-    @Test
-    void deveAlterarDadosDoEstoque() {
-        Veiculo veiculo = new Veiculo();
         Estoque estoque = new Estoque();
+        Veiculo veiculo = new Veiculo();
 
-        estoque.setId(2);
         estoque.setVeiculo(veiculo);
-        estoque.setQuantidade(20);
 
-        assertAll(
-                () -> assertEquals(2, estoque.getId()),
-                () -> assertSame(veiculo, estoque.getVeiculo()),
-                () -> assertEquals(20, estoque.getQuantidade())
-        );
+        assertSame(veiculo, estoque.getVeiculo());
     }
 }

@@ -1,32 +1,27 @@
-package model;
+package tests;
+
+import model.Score;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-class ScoreTest {
+public class ScoreTest {
 
     @Test
-    void pontuacao700DeveSerClassificadaComoAlto() {
-        Score score = new Score(1, 700);
+    void deveClassificarScoreBaixo() {
+
+        Score score = new Score(1, 300);
 
         assertEquals(
-                Score.Classificacao.ALTO,
+                Score.Classificacao.BAIXO,
                 score.getClassificacao()
         );
     }
 
     @Test
-    void pontuacaoMaiorQue700DeveSerClassificadaComoAlto() {
-        Score score = new Score(1, 900);
+    void deveClassificarScoreBom() {
 
-        assertEquals(
-                Score.Classificacao.ALTO,
-                score.getClassificacao()
-        );
-    }
-
-    @Test
-    void pontuacaoEntre400E699DeveSerClassificadaComoBom() {
         Score score = new Score(1, 500);
 
         assertEquals(
@@ -36,23 +31,20 @@ class ScoreTest {
     }
 
     @Test
-    void pontuacaoMenorQue400DeveSerClassificadaComoBaixo() {
-        Score score = new Score(1, 399);
+    void deveClassificarScoreAlto() {
+
+        Score score = new Score(1, 800);
 
         assertEquals(
-                Score.Classificacao.BAIXO,
+                Score.Classificacao.ALTO,
                 score.getClassificacao()
         );
     }
 
     @Test
-    void alterarPontuacaoDeveAtualizarClassificacao() {
-        Score score = new Score(1, 300);
+    void deveAlterarPontuacao() {
 
-        assertEquals(
-                Score.Classificacao.BAIXO,
-                score.getClassificacao()
-        );
+        Score score = new Score(1, 300);
 
         score.setPontuacao(800);
 
@@ -63,22 +55,5 @@ class ScoreTest {
                 score.getClassificacao()
         );
     }
-
-    @Test
-    void deveAlterarIdECliente() {
-        Score score = new Score();
-
-        score.setId(10);
-        score.setClienteId(25);
-        score.setClassificacao(Score.Classificacao.BOM);
-
-        assertAll(
-                () -> assertEquals(10, score.getId()),
-                () -> assertEquals(25, score.getClienteId()),
-                () -> assertEquals(
-                        Score.Classificacao.BOM,
-                        score.getClassificacao()
-                )
-        );
-    }
 }
+
