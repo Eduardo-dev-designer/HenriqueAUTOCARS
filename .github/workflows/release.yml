@@ -1,0 +1,40 @@
+name: Release - Publicar JAR
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  release:
+    name: Build e Release
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: HenriqueAUTOCARS
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Rodar testes
+        run: mvn -B -ntp test
+
+      - name: Empacotar JAR
+        run: mvn -B -ntp package -DskipTests
+
+      - name: Criar Release no GitHub
+        uses: softprops/action-gh-release@v2
+        with:
+          files: HenriqueAUTOCARS/target/*.jar
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
