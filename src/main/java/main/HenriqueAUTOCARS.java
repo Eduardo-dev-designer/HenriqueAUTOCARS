@@ -1,6 +1,7 @@
 package main;
 
 import DAO.ConexaoBD;
+import view.ListadeCompra;
 import view.TelaCliente;
 import view.TelaFuncionario;
 
@@ -18,6 +19,15 @@ public class HenriqueAUTOCARS {
         
         TelaCliente telaClien = new TelaCliente ();
         telaClien.setVisible(true);
+        
+        ListadeCompra listCom = new ListadeCompra();
+        listCom.setVisible(true);
+        
+    
+    
     }
+    
+    
+    
     
 }

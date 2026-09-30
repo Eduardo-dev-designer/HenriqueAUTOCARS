@@ -134,7 +134,88 @@ public class TelaCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttoncadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttoncadastrarActionPerformed
-        // TODO add your handling code here:
+
+
+        String emailInicial = emailtxt.getText().trim();
+        String senhaInicial = senhatxt.getText().trim();
+        if (emailInicial.equals("Digite seu Email/Telefone...")) {
+            emailInicial = "";
+        }
+        if (senhaInicial.equals("Digite sua senha...")) {
+            senhaInicial = "";
+        }
+ 
+        javax.swing.JTextField nometxt = new javax.swing.JTextField(20);
+        javax.swing.JTextField cpftxt = new javax.swing.JTextField(20);
+        javax.swing.JTextField emailCadtxt = new javax.swing.JTextField(emailInicial, 20);
+        javax.swing.JTextField telefonetxt = new javax.swing.JTextField(20);
+        javax.swing.JPasswordField senhaCadtxt = new javax.swing.JPasswordField(senhaInicial, 20);
+ 
+        javax.swing.JPanel painel = new javax.swing.JPanel(new java.awt.GridLayout(0, 2, 5, 5));
+        painel.add(new javax.swing.JLabel("Nome:"));
+        painel.add(nometxt);
+        painel.add(new javax.swing.JLabel("CPF:"));
+        painel.add(cpftxt);
+        painel.add(new javax.swing.JLabel("Email:"));
+        painel.add(emailCadtxt);
+        painel.add(new javax.swing.JLabel("Telefone:"));
+        painel.add(telefonetxt);
+        painel.add(new javax.swing.JLabel("Senha:"));
+        painel.add(senhaCadtxt);
+ 
+        int opcao = JOptionPane.showConfirmDialog(this, painel, "Cadastrar cliente",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+ 
+        if (opcao != JOptionPane.OK_OPTION) {
+            return;
+        }
+ 
+        String nome = nometxt.getText().trim();
+        String cpf = cpftxt.getText().trim();
+        String email = emailCadtxt.getText().trim();
+        String telefone = telefonetxt.getText().trim();
+        String senha = new String(senhaCadtxt.getPassword()).trim();
+ 
+        if (nome.isEmpty() || cpf.isEmpty() || email.isEmpty()
+                || telefone.isEmpty() || senha.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Preencha todos os campos.",
+                    "Cadastro", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+ 
+        if (!email.contains("@")) {
+            JOptionPane.showMessageDialog(this,
+                    "Informe um e-mail válido.",
+                    "Cadastro", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+ 
+        try {
+            ClienteDAO clienteDAO = new ClienteDAO();
+            Cliente cliente = new Cliente(nome, cpf, email, telefone, senha);
+            int id = clienteDAO.inserir(cliente);
+ 
+            if (id > 0) {
+                JOptionPane.showMessageDialog(this,
+                        "Cliente cadastrado com sucesso!\nAgora você já pode entrar.");
+                emailtxt.setText(email);
+                senhatxt.setText("");
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Não foi possível cadastrar o cliente.",
+                        "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (RuntimeException ex) {
+            String causa = ex.getCause() != null ? String.valueOf(ex.getCause().getMessage()) : "";
+            String msg = causa.contains("UNIQUE")
+                    ? "Já existe um cliente cadastrado com esse CPF ou e-mail."
+                    : "Erro ao cadastrar: " + causa;
+            JOptionPane.showMessageDialog(this, msg, "Erro", JOptionPane.ERROR_MESSAGE);}
+
+
+
+
     }//GEN-LAST:event_buttoncadastrarActionPerformed
 
     private void buttonentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonentrarActionPerformed

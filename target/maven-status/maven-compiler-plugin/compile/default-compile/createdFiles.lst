@@ -15,6 +15,7 @@ DAO\ConexaoBD.class
 main\HenriqueAUTOCARS.class
 view\TelaFuncionario.class
 model\Score.class
+view\ListadeCompra.class
 model\Cliente.class
 DAO\FuncionarioDAO.class
 view\TelaFuncionario$1.class
