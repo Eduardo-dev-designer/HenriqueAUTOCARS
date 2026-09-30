@@ -5,14 +5,14 @@ on:
     tags:
       - 'v*.*.*'
 
+# Necessário para criar a Release no GitHub
+permissions:
+  contents: write
+
 jobs:
   release:
     name: Build e Release
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: HenriqueAUTOCARS
 
     steps:
       - name: Checkout do código
@@ -25,16 +25,13 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Rodar testes
-        run: mvn -B -ntp test
-
-      - name: Empacotar JAR
-        run: mvn -B -ntp package -DskipTests
+      - name: Testar e empacotar (mvn verify)
+        run: mvn -B -ntp verify
 
       - name: Criar Release no GitHub
         uses: softprops/action-gh-release@v2
         with:
-          files: HenriqueAUTOCARS/target/*.jar
+          files: target/HenriqueAUTOCARS.jar
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
